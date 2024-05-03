@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  lebels:
+    app: myk8sapp
+  name: myk8sapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myk8sapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: myk8sapp
+    spec:
+      containers:
+      - image: rakibhasansazib/test:latest
+        name: myk8sapp
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-lb-service
+  labels:
+    app: my-lb-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: myk8sapp
