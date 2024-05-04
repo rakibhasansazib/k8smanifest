@@ -19,7 +19,7 @@ stage('Update GIT') {
 		    sh "sed -i 's+rakibhasansazib/test .* +rakibhasansazib/test:${DOCKERTAG}+g' deployment.yaml"
 		    sh "cat deployment.yaml"
 		    sh "git add ."
-		    sh "git comnit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
+		    sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
 		    sh "git push https://${GIT_USERNAME):${GIT_PASSWORD}@github.com/${GIT_USERNAME}/k8smanifest.git HEAD:main"
 		    }
 		}
