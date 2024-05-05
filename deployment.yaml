@@ -1,17 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  lebels:
+  creationTimestamp: null
+  labels:
     app: myk8sapp
   name: myk8sapp
 spec:
-  replicas: 3
+  replicas: 2
   selector:
-    matchLabels:dfse
+    matchLabels:
       app: myk8sapp
   strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: myk8sapp
     spec:
@@ -20,17 +22,17 @@ spec:
         name: myk8sapp
         resources: {}
 status: {}
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-lb-service
-  labels:
-    app: my-lb-service
+  name: lb-service
 spec:
-  type: LoadBalancer
+  type: NodePort
+  selector:
+    app: myk8sapp
   ports:
   - port: 80
     targetPort: 5000
-  selector:
-    app: myk8sapp
+    nodePort: 30007
