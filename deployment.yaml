@@ -18,7 +18,7 @@ spec:
         app: myk8sapp
     spec:
       containers:
-      - image: rakibhasansazib/test:20
+      - image: rakibhasansazib/test:21
         name: myk8sapp
         resources: {}
 status: {}
